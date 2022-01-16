@@ -42,9 +42,9 @@ class MainScreen extends StatelessWidget {
                       prefixIcon: const Icon(
                         Icons.search,
                       ),
-                      suffixIcon: const Icon(
-                        Icons.close,
-                      ),
+                      // suffixIcon: const Icon(
+                      //   Icons.close,
+                      // ),
                     ),
                     onSubmitted: (value) => _controller.search(value),
                   ),
