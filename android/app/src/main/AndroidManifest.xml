@@ -2,7 +2,7 @@
     package="com.adhnan.lazyloading_getx.example.lazyloading_getx_example">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="lazyloading_getx_example"
+        android:label="PicArt"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

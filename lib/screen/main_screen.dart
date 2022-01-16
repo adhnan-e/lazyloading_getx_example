@@ -37,79 +37,91 @@ class MainScreen extends StatelessWidget {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-
-                      hintText: 'Search here ',
+                      hintText: 'Search keyword here...',
                       prefixIcon: const Icon(
                         Icons.search,
                       ),
-                      // suffixIcon: const Icon(
-                      //   Icons.close,
-                      // ),
+
                     ),
-                    onSubmitted: (value) => _controller.search(value),
+                    onSubmitted: (value) => _controller.loadSearch(value),
                   ),
                 ),
               ),
               Flexible(
-                child:_controller.isError?Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/warnning.png",colorBlendMode: BlendMode.colorBurn,),
-
-                    const Text("Oops!, Some thing went wrong")
-                  ],
-                ):_controller.isNoImage?Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/void.png",colorBlendMode: BlendMode.colorBurn,),
-
-                    const Text("No Image Found!")
-                  ],
-                ): LazyLoadScrollView(
-                  onEndOfPage: _controller.loadNextPage,
-                  isLoading: _controller.lastPage,
-                  child:_controller.hists.isNotEmpty ? MasonryGridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 2,
-                    crossAxisSpacing: 2,
-                    itemCount: _controller.hists.length,
-                    itemBuilder: (context, index) {
-                      final image = _controller.hists[index];
-                      return InkWell(
-                        onTap: () {
-                          showImageViewerPager(
-                              context,
-                              HitsImageProvider(
-                                  imageUrls: _controller.hists,
-                                  initialIndex: index),
-                              useSafeArea: false,
-                              immersive: false);
-                        },
-                        child: Stack(
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl: image.largeImageURL!,
-                              placeholder: (context, url) => Shimmer.fromColors(
-                                  baseColor: Colors.grey,
-                                  highlightColor: Colors.white,
-                                  child: Container(
-                                    color: Colors.white,
-                                    width: 200.0,
-                                    height: 100.0,
-                                  )),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                            ),
-                            Text(image.user!.toUpperCase())
-                          ],
-                        ),
-                      );
-                    },
-                  ):const Center(child: CircularProgressIndicator(),),
-                ),
+                child: _controller.isError
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/warning.png",
+                            width: 280,
+                          ),
+                          const Text("Oops!, Some thing went wrong")
+                        ],
+                      )
+                    : _controller.isNoImage
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/void.png",
+                                width: 280,
+                              ),
+                              const Text("No Image Found!")
+                            ],
+                          )
+                        : LazyLoadScrollView(
+                            onEndOfPage: _controller.loadNextPage,
+                            isLoading: _controller.lastPage,
+                            child: _controller.hists.isNotEmpty
+                                ? MasonryGridView.count(
+                                    shrinkWrap: true,
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 2,
+                                    crossAxisSpacing: 2,
+                                    itemCount: _controller.hists.length,
+                                    itemBuilder: (context, index) {
+                                      final image = _controller.hists[index];
+                                      return InkWell(
+                                        onTap: () {
+                                          showImageViewerPager(
+                                              context,
+                                              HitsImageProvider(
+                                                  imageUrls: _controller.hists,
+                                                  initialIndex: index),
+                                              useSafeArea: false,
+                                              immersive: false);
+                                        },
+                                        child: Stack(
+                                          children: [
+                                            CachedNetworkImage(
+                                              imageUrl: image.largeImageURL!,
+                                              placeholder: (context, url) =>
+                                                  Shimmer.fromColors(
+                                                      baseColor: Colors.grey,
+                                                      highlightColor:
+                                                          Colors.white,
+                                                      child: Container(
+                                                        color: Colors.white,
+                                                        width: 200.0,
+                                                        height: 100.0,
+                                                      )),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
+                                            Text(image.user!.toUpperCase())
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  )
+                                : const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                          ),
               ),
             ],
           ),

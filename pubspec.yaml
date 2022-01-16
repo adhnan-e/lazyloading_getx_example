@@ -23,15 +23,17 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
   flutter_lints: ^1.0.4
-
-
+  flutter_launcher_icons: ^0.9.2
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.png"
 flutter:
 
   uses-material-design: true
 
-
   assets:
     - assets/void.png
-    - assets/warnning.png
+    - assets/warning.png
+    - assets/logo.png

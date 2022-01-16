@@ -43,8 +43,8 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.adhnan.lazyloading_getx.example.lazyloading_getx_example"
-        minSdkVersion flutter.minSdkVersion
+        applicationId "com.adhnan.lazyloading_getx.example"
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
