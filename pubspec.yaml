@@ -30,3 +30,8 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+
+  assets:
+    - assets/void.png
+    - assets/warnning.png

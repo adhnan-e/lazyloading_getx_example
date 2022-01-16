@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.adhnan.lazyloading_getx.example.lazyloading_getx_example">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="lazyloading_getx_example"
         android:name="${applicationName}"
